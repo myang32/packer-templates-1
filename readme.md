@@ -19,6 +19,14 @@ The Windows 2016 templates use the `packer-templates` Chef cookbook to provision
 
 This downloads all dependencies and saves them in vendor/cookbooks. From here packer will upload them to the image being built.
 
+### Vendoring the cookbooks using Docker
+
+You can use Docker to vendor the cookbooks without installing Berkshelf or Chef on your host machine.
+
+```
+docker run -it -v $(pwd):/packer bison/chef-dk bash -c "cd /packer/cookbooks/packer-templates && berks vendor ../../vendor/cookbooks"
+```
+
 ## Invoking the template
 Invoke `packer` to run a template like this:
 ```
